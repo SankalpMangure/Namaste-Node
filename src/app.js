@@ -3,6 +3,7 @@ const { log } = require("node:console")
 const app = express()
 
 // request handler
+// request handler
 app.use((req, res) => {
   res.send("Hello from the server")
 })
