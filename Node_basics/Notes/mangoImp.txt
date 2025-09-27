@@ -1,0 +1,51 @@
+1. type : mongoose.Schema.Types.ObjectId => this used in mongoose for storing _id as a Foreign Key into another schema
+
+2. enum : this will be array, the values present in array only should be acceptable, other values will be ignored
+
+    status:{
+      type: String,
+      enum:{
+        values:["accepted","rejected","pending","ignored"],
+        message:"${VALUE} is incorrect" // this msg appear when value is wrong
+      }
+    }
+
+    this validate at mongoose schema end so, you dont need any validation in node/react
+    you can write custom validation using "Validate" function
+
+3. write OR condition in node with mongoose
+    await connestionRequest.findOne({
+      $or:[
+        {formUserId:formUserId,toUserId:toUserId},
+        {formUserId:toUserId,toUserId:formUserId},
+      ]
+    })
+
+4. pre => pre is used for if you want to do something and before that this called and then goes to somewhere
+   
+   Schema.pre("save",function(){
+
+   })
+
+   this is like this pre called before mongoose save method
+   you can called this as middleware
+
+5. index in mangoDB => suppose you have billions of records and you want to do search operation, then query will take so much
+   time for searching, to overcome this problem you can use indexing,
+   indexing is like giving sr. no to field so it will automatice overcome query time
+
+   Schema.index({emailId:1}) //1=>asc, -1=> desc
+   Schema.index({formUserId:1, toUserId||:1}) => compound indexing
+
+6. mangooseSchema methods => which is called as handler/helper => eg. like addling jwt sign which is do once here
+    this are only simple functions not a arrow function
+    use this keyword here which referes to current object
+    this not works with arrow function FYI
+
+7. there are 2 imp functions in mangoDB 
+    skip() => like offset in Sql
+    limit() => like limit in Sql
+
+8. $nin => not in
+   $eq => equal to
+   both used with $and condition

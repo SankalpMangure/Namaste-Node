@@ -1,0 +1,82 @@
+1. asynchronous IO === non-blocking IO => it handle multiple request using multiple thread => open source
+    using single thread it can do so many things parellel 
+
+* node js uses V8 engine of brower or it node js works on V8 engine
+   Node.js is work on event-driven architecture.
+
+2. node REPL => read (read the code), evalaute (evalaute the code), print (priunt output), loop (do it again)
+
+3. node js is javascript runtime environment 
+
+4. module => u can say module is collection of code which is private to itself
+
+5. import/export =>  coz modules are default protected => so that we need to export and import(require) somewhere
+    type 1 : comman js module  => which is default in node so that we use require => module.export then "require('')" => non strict mode 
+    type 2 : ES modules  => u need to give type module in package.json => export  then "import from" => strict mode
+
+6. IIFE =>  immediately invoked function expression => (function(){})() => all modules are IIFE 
+    after require and module.exports => it does (function(require, module.exports={}){})() => like code in module nodeJS add into IIFE and it automatically executes
+
+7. asynchrnous => node js can perform asynchrnous task but javascript is synchronous <= synchronous
+    
+8. libuv => using libuv asynchrnous task are made simple => u can say coz of libuv nodeJS is asynchrnous 
+         => it contains thredpools, event loops, queues
+         => responsible to make call then get data then take that callback function and give it back to callstack 
+
+9. setTimeOut has trust issues that if u want to execute it after 0 sec then also only if call stack of main thred is empty then then it execute 
+
+10. Event loop has major 4 phases
+    1. timer => setTimeout,setInterval
+    2. pool => I/O callback (file reading,api call) => if call stack and callbck queues empty then event loop wait here
+    3. check => setImmediate wale callback run hotat
+    4. close => closing connection
+
+    *5 process.nextTick => 1st very hightest priority
+    *6 promise => 2nd very hightest priority
+
+    1 TICK =><= 1 circle complete of all phases
+
+11. libuv contains=>
+    1. event loop
+    2. callback queues
+    3. thread pool
+
+12. thread pool =>
+    default size is 4 threads => UV_THREADPOOL_SIZE == 4
+    all actions from pool(2nd phase) done into thread pool
+
+    if u give synchronous code then it single threaded
+    if u give asynchrnous code then using libUv it will be multi threaded
+
+    u can change thread pool size => process.env.UV_THREADPOOL_SIZE=2;
+
+13. IMP RULES
+    1. never block the main thread
+    2. dont use sync methods (readSync,writeSync)
+
+14. When client send request to server it creates socket then return data and close socket connection 
+    for socket connection it use TCP/IP protocol
+    protocol => set of rule to communicate
+    stream & buffer => stream === sending data && buffer === this data is in chunk not all at a time
+15. DNS server => domain name 
+16. Web-Socket=> its jsut like socket but, in socket for after single request it close socket connaction but in 
+    web socket it holds the conncrion and do multiple requests
+--------------------------------------------------------------------------------------------------------------------
+17. express.js => is node js fremework which is build on top on nodeJs which is use to create web server
+18. MangoDb => stores data in json/documents format, flexible, more compatible with node js 
+    collection => documents => fields
+    no need of normalization, no need to join
+
+19. JWT token divided into 3 parts =>
+    1. red => header
+    2. pink => payload
+    3. blue => signature
+20. create .env file => create constant variable into it
+    - require('dotenv).config()
+
+21. node-cron 
+    - cron.schedule("* * * * *", () =>{
+
+    })
+    - add only require("filename")
+    

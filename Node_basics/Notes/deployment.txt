@@ -1,0 +1,56 @@
+1. Sign in AWS
+2. Take and Launch EC2 instance => it will give(download) you .pem file 
+3. chmod 400 <secret.pem> => chnage permission of .pem file given by AWS
+3. ssh........... => using this command connect to AWS instance 
+4. install node onto instance (plz install your local version on AWS machine)
+5. git clone ...... => then clone your project
+6. forntend 
+    - npm install => install all dependencies
+    - npm run build => 
+    - sudo apt update => update ubuntu version or dependencies
+    - sudo apt install nginx => install nginx which is called as software to deploy frontend
+        it make web server, HTTP web server
+        give load balancer
+        give reverse proxy
+        content cache
+        mail proxy
+    - sudo systemctl start nginx
+    - sudo systemctl enable nginx
+    - scp -r dist/* /var/www/html => copy files from dist(build files) folder to var/www/html
+    - enable port 80 => in AWS security rules add inbound rules
+
+7.  backend
+    - npm install => in node folder
+    - whitelist the IP on mangoDB site => coz you need to connect node with mangodb using AWS server IP
+    - npm install pm2 -g => to install process manager coz if you do npm start then after you exit from AWS the node will beark
+    - pm2 start npm -- start => the pm2 server haldles this servies and start the keep the srver running always
+(op)- pm2 start npm -- name "devTinderNode" -- start => start with change process name
+    - pm2 logs => to check logs
+
+8. config nginx - /etc/nginx/site-availabel/default => change into this file
+    - server_name your_server_ip/domain_name
+    - location /api/ {
+      chatGpt code
+    }
+
+9. sudo systemctl restart nginx
+
+10. adding a custom domainname 
+    - purchase domain from godaddy
+    - select my product => select DNS => it show where this domain name is mapping to 
+    - in cloudflare "add domain"
+    - change nameserevers on goDaddy and point to cloudflare
+    - change ip address of new AWS address on cloudflare
+
+11. Amazon SES => simple email service
+    - in IAM - create new user
+    - give policy of AmazonSES => as full permission
+    - create an identity in Amazon SES
+    - verify your domain name
+    - verify email address
+    - setup SES client
+    - access creadentials should be created on IAM user under securityCredential tab
+    - add the creadentials to .env file
+    - write the code SES client
+    - write the code for sending email 
+    - make the email dynamic
