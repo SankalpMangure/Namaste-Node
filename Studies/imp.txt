@@ -1,0 +1,22 @@
+  2 types of languages
+  interpretted                              ||                                  compiled
+                                            ||
+ 1. it execute line by line                 || 1. 1st compilation of hole code => high level code convirted into machine code   
+                                            ||    and execute
+ 2. fast initial execution                  || 2. initially heavy but execute fast
+ 3. interpreter present                     || 3. compiler present
+                                            ||
+                                            ||
+                                            ||
+                                            ||
+                                            ||
+                                            ||
+                                            ||
+                                            ||
+                                            ||
+                                            ||
+                                            ||
+                                            ||
+
+********* javaecript uses JIT compiler ***********
+which is just in time compiler
