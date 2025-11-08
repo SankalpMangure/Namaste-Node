@@ -1,9 +1,10 @@
 const obj = { name: "sankalp" };
 
-function temp() {
-  console.log(this.name);
+function temp(a,b) {
+  console.log(this.name+"__"+a+"__"+b); //call & apply & bind
 }
 
-temp.call(obj); //// its take arg list and execute
-temp.apply(obj) //// its take arg array and execute
-temp.bind(obj)() //// return new function
+temp.call(obj,"SANKALP","MANGURE"); // its take arg list and execute
+temp.apply(obj,["SANKALPPPPP","MANGUREEEEE"]) // its take arg array and execute
+const a = temp.bind(obj,"SANKALP A()","MANGURE A()") // return new function
+a()
